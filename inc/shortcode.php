@@ -24,7 +24,7 @@ function showdaftar_klien(){
 
     <div class="vd-daftar-klien show-vddaftar-klien">
         <div class="caption-vddaftar-klien">
-            <span>Total : <?php echo $countklien; ?> Klien</span>
+            <span><strong>Total : <?php echo $countklien; ?> Klien</strong></span>
         </div>
         <div class="show-vddaftar-klien">
             <?php foreach ($arekategori as $key => $value): ?>
