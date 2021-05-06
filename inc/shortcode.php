@@ -7,6 +7,7 @@ function showdaftar_klien(){
     $VDklienkategori    = new VDklienkategori();
     $datakategori       = $VDklienkategori->get("WHERE type='kategori' ORDER BY name ASC");
     $datapaket          = $VDklienkategori->get("WHERE type='paket' ORDER BY name ASC");
+    $countklien         = $VDklienklien->count();
     
     //create array
     $arekategori        = [];
@@ -22,7 +23,10 @@ function showdaftar_klien(){
     ?>
 
     <div class="vd-daftar-klien show-vddaftar-klien">
-        <div class="show-vddaftar-klien-inner">
+        <div class="caption-vddaftar-klien">
+            <span>Total : <?php echo $countklien; ?> Klien</span>
+        </div>
+        <div class="show-vddaftar-klien">
             <?php foreach ($arekategori as $key => $value): ?>
                 <div class="daftarklien-item" data-kategori="<?php echo $key; ?>">
                     <div class="daftarklien-item-kategori"><strong><?php echo $value; ?></strong></div>
