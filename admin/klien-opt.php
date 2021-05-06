@@ -63,7 +63,7 @@ if($filtercat) {
 $filter     = $filter?'WHERE '.implode(" and ",$filter):'';
 $linkdaftar = $filterurl?$linkdaftar.'&'.str_replace(' ', '', implode("&",$filterurl)):$linkdaftar;
 
-$dataklien  = $VDklienklien->get("$filter ORDER BY id ASC");
+$dataklien  = $VDklienklien->get("$filter ORDER BY id DESC");
 $countklien = $VDklienklien->count($filter);
 
 ?>
