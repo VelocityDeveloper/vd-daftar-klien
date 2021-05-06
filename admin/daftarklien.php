@@ -25,6 +25,8 @@ $linkdaftar     = get_home_url().'/wp-admin/options-general.php?page=vdklien-daf
                 <?php require_once('paket-opt.php'); ?>
             </div>
         </div>
+    <?php elseif($hal=='import'):?>
+        <?php require_once('import-opt.php'); ?>
     <?php else:?>
         <div id="klien-opt">
             <?php require_once('klien-opt.php'); ?>
