@@ -14,7 +14,7 @@ foreach ($datapaket as $key => $value) {
     $arepaket[$value['name']] = $value['id'];
 }
 
-$array = '';
+$array = 'www.hkbpperkembangan.org (Paket F)+www.gkijefsi.or.id (Paket G)+www.renungankristenterkini.com (Paket APK Custom)+www.wadimubarak.com (Paket G)+www.pakmkusu.org (Paket G)+www.pastoralkonselinggki.com (Paket G)+www.gsjakads.com (Paket G)+www.hajiplusumrohsunnah.com (Paket F)+www.galeri-haji.com (Paket G)+www.bintangaqiqah.com (Paket G)+www.gtq-albukhari.com (Paket F)+www.arofahmina.co.id+www.webkita.net (Paket F)+www.kajianahadpagipdmpati.com (Paket F)';
 
 $array = explode("+",$array);
 
@@ -42,7 +42,7 @@ foreach ($array as $key => $value) {
     
     // $getweb = $VDklienklien->get("WHERE nama = '$web' ");
     // if(!$getweb) {
-    //     $VDklienklien->add($web,30,$paketkode);
+    //     $VDklienklien->add($web,37,$paketkode);
     //     echo 'berhasil = '.$web.'<br><br>';
     // }
 }
