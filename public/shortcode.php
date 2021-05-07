@@ -5,9 +5,10 @@ function showdaftar_klien($atts){
     ob_start();  
 
     $atribut = shortcode_atts( array(
-        'style'     => '',
-        'kategori'  => '',
-        'paket'     => '',
+        'style'             => '',
+        'kategori'          => '',
+        'kategori-id'       => '',
+        'paket'             => '',
     ), $atts );
 
     echo show_dataklien($atribut);

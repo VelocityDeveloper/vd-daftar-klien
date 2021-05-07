@@ -1,12 +1,15 @@
 <?php
 ///show data klien
 function show_dataklien($args=null){
-
+    // print_r($args);
     $VDklienklien       = new VDklienklien();
     $VDklienkategori    = new VDklienkategori();
+    $atstyle            = isset($args['style'])&&!empty($args['style'])?$args['style']:'number';
     $atkategori         = isset($args['kategori'])&&!empty($args['kategori'])?$args['kategori']:'';
+    $atkategoriid       = isset($args['kategori-id'])&&!empty($args['kategori-id'])?$args['kategori-id']:'';
     $atpaket            = isset($args['paket'])&&!empty($args['paket'])?$args['paket']:'';
         
+    $filpaket           = $atpaket?$VDklienkategori->get("WHERE type='paket' AND name = '$atpaket'"):'';
     $datapaket          = $VDklienkategori->get("WHERE type='paket' ORDER BY name ASC");
     $countklien         = $VDklienklien->count();
     
@@ -18,8 +21,8 @@ function show_dataklien($args=null){
 
     //create array kategori
     $arekategori            = [];
-    if($atkategori):
-        $getatkat           = $VDklienkategori->get("WHERE name = '$atkategori'");
+    if($atkategori || $atkategoriid):
+        $getatkat           = $atkategoriid?$VDklienkategori->get("WHERE id = $atkategoriid"):$VDklienkategori->get("WHERE name = '$atkategori'");
         if($getatkat):
             $arekategori[$getatkat[0]['id']] = $getatkat[0]['name'];
         endif;
@@ -32,7 +35,7 @@ function show_dataklien($args=null){
 
     ?>
 
-    <div class="vd-daftar-klien show-vddaftar-klien">
+    <div class="vd-daftar-klien show-vddaftar-klien style-vddaftar-klien-<?php echo $atstyle; ?>">
         <div class="caption-vddaftar-klien">
             <span><strong>Total : <?php echo $countklien; ?> Klien</strong></span>
         </div>
@@ -41,11 +44,23 @@ function show_dataklien($args=null){
                 <div class="daftarklien-item" data-kategori="<?php echo $key; ?>">
                     <div class="daftarklien-item-kategori"><strong><?php echo $value; ?></strong></div>
 
-                    <?php $getdataklien = $VDklienklien->get("WHERE kategori = $key ORDER BY nama ASC"); ?>
-                    <?php if($getdataklien): ?>
+                    <?php                     
+                    $filter         = [];
+                    $filter[]       = "kategori = $key";
+                    if($atpaket&&$filpaket) {
+                        $idpaket    = $filpaket[0]['id'];
+                        $filter[]   = "paket = $idpaket";
+                    }
+                    $filter         = $filter?'WHERE '.implode(" and ",$filter):'';
+                    $getdataklien   = $VDklienklien->get("$filter ORDER BY nama ASC");
+                    // print_r($filter);
+                    if($getdataklien): ?>
                         <ol class="daftarklien-datas">
                         <?php foreach ($getdataklien as $data): ?>
-                            <li><?php echo $data['nama']; ?> (<?php echo $arepaket[$data['paket']]; ?>)</li>
+                            <li>
+                                <?php echo $data['nama']; ?>
+                                <?php echo isset($arepaket[$data['paket']])?'('.$arepaket[$data['paket']].')':''; ?>
+                            </li>
                         <?php endforeach; ?>
                         </ol> 
                     <?php endif; ?>
