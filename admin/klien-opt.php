@@ -1,4 +1,5 @@
 <?php
+$paged              = isset($_GET['paged'])?$_GET['paged']:1;
 $kliensearch        = isset($_GET['klien-search'])?$_GET['klien-search']:'';
 $filtercat          = isset($_GET['filter-kategori'])?$_GET['filter-kategori']:'';
 $filterpaket        = isset($_GET['filter-paket'])?$_GET['filter-paket']:'';
@@ -69,10 +70,16 @@ if($kliensearch):
     $linkdaftar = $linkdaftar.'&klien-search='.$kliensearch;
 endif;
 
-$dataklien  = $VDklienklien->get("$filter ORDER BY id DESC");
-$countklien = $VDklienklien->count($filter);
+$post_per_page  = 50;
+$offset         = ($paged - 1)*$post_per_page;
+$dataklien      = $VDklienklien->get("$filter ORDER BY id DESC LIMIT $post_per_page OFFSET $offset");
+$countklien     = $VDklienklien->count($filter);
+$max_num_pages  = ceil($countklien/ $post_per_page);
 
+$Navlinknext    = ($max_num_pages > $paged)?$linkdaftar.'&paged='.$paged+1:$linkdaftar;
+$Navlinkprev    = (1 > $paged)?$linkdaftar.'&paged='.$paged+1:$linkdaftar;
 ?>
+
 <div class="keloladaftar-klien">
 
     <form class="search-form wp-clearfix" method="get">
@@ -147,8 +154,19 @@ $countklien = $VDklienklien->count($filter);
                             </select>
                             <input type="submit" id="doaction" class="button action" value="Filter">
                         </div>
-                        <div class="tablenav-pages one-page">
+                        <div class="tablenav-pages">
                             <span class="displaying-num"><?php echo $countklien;?> items</span>
+                            <span class="pagination-links">
+                                <a class="first-page" href="<?php echo $linkdaftar;?>&paged=1"><span class="screen-reader-text">First page</span><span aria-hidden="true">«</span></a>
+                                <a class="prev-page" href="<?php echo $Navlinkprev;?>"><span class="screen-reader-text">Previous page</span><span aria-hidden="true">‹</span></a>
+                                <span class="paging-input">
+                                    <label for="current-page-selector" class="screen-reader-text">Current Page</label>
+                                    <input class="current-page" id="current-page-selector" type="text" name="paged" value="<?php echo $paged; ?>" size="1" aria-describedby="table-paging">
+                                    <span class="tablenav-paging-text"> of <span class="total-pages"><?php echo $max_num_pages; ?></span></span>
+                                </span>
+                                <a class="next-page" href="<?php echo $Navlinknext;?>"><span class="screen-reader-text">Next page</span><span aria-hidden="true">›</span></a>
+                                <a class="last-page" href="<?php echo $linkdaftar;?>&paged=<?php echo $max_num_pages; ?>"><span class="screen-reader-text">Last page</span><span aria-hidden="true">»</span></a>
+                            </span>
                         </div>
                     </div>
                 </form>

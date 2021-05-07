@@ -3,6 +3,14 @@
 }
 
 @media (min-width: 480px) {
+    .keloladaftar-klien #col-left {
+        float: left;
+        width: 30%;
+    }
+    .keloladaftar-klien #col-right {
+        float: right;
+        width: 70%;
+    }
     .wrap-vddaftar-klien .widget-liquid-left {
         margin: 0;
         width: 48%;
