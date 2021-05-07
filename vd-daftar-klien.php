@@ -24,8 +24,8 @@ define( 'VD_DAFTAR_KLIEN_VERSION', '1.0.0' );
 ///call file
 require plugin_dir_path( __FILE__ ) . 'inc/VDklienkategori.php';
 require plugin_dir_path( __FILE__ ) . 'inc/VDklienklien.php';
-require plugin_dir_path( __FILE__ ) . 'inc/shortcode.php';
 require plugin_dir_path( __FILE__ ) . 'inc/ajax.php';
+require plugin_dir_path( __FILE__ ) . 'public/shortcode.php';
 
 /**
  * Register a custom sub menu page.

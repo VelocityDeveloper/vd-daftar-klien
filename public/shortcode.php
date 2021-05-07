@@ -19,7 +19,6 @@ function showdaftar_klien(){
         $arepaket[$value['id']] = $value['name'];
     }
 
-
     ?>
 
     <div class="vd-daftar-klien show-vddaftar-klien">
