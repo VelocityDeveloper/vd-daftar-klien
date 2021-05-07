@@ -1,22 +1,34 @@
 <?php
 ///show data klien
-function show_dataklien(){
-        
+function show_dataklien($args=null){
+
     $VDklienklien       = new VDklienklien();
     $VDklienkategori    = new VDklienkategori();
-    $datakategori       = $VDklienkategori->get("WHERE type='kategori' ORDER BY name ASC");
+    $atkategori         = isset($args['kategori'])&&!empty($args['kategori'])?$args['kategori']:'';
+    $atpaket            = isset($args['paket'])&&!empty($args['paket'])?$args['paket']:'';
+        
     $datapaket          = $VDklienkategori->get("WHERE type='paket' ORDER BY name ASC");
     $countklien         = $VDklienklien->count();
     
     //create array
-    $arekategori        = [];
-    foreach ($datakategori as $key => $value) {
-        $arekategori[$value['id']] = $value['name'];
-    }
     $arepaket           = [];
     foreach ($datapaket as $key => $value) {
         $arepaket[$value['id']] = $value['name'];
     }
+
+    //create array kategori
+    $arekategori            = [];
+    if($atkategori):
+        $getatkat           = $VDklienkategori->get("WHERE name = '$atkategori'");
+        if($getatkat):
+            $arekategori[$getatkat[0]['id']] = $getatkat[0]['name'];
+        endif;
+    else:
+        $datakategori       = $VDklienkategori->get("WHERE type='kategori' ORDER BY name ASC");
+        foreach ($datakategori as $key => $value) {
+            $arekategori[$value['id']] = $value['name'];
+        }
+    endif;
 
     ?>
 
@@ -28,6 +40,7 @@ function show_dataklien(){
             <?php foreach ($arekategori as $key => $value): ?>
                 <div class="daftarklien-item" data-kategori="<?php echo $key; ?>">
                     <div class="daftarklien-item-kategori"><strong><?php echo $value; ?></strong></div>
+
                     <?php $getdataklien = $VDklienklien->get("WHERE kategori = $key ORDER BY nama ASC"); ?>
                     <?php if($getdataklien): ?>
                         <ol class="daftarklien-datas">
@@ -36,6 +49,7 @@ function show_dataklien(){
                         <?php endforeach; ?>
                         </ol> 
                     <?php endif; ?>
+
                 </div>
             <?php endforeach; ?>
         </div>
