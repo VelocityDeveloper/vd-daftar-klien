@@ -14,7 +14,7 @@ foreach ($datapaket as $key => $value) {
     $arepaket[$value['name']] = $value['id'];
 }
 
-$array = 'www.hkbpperkembangan.org (Paket F)+www.gkijefsi.or.id (Paket G)+www.renungankristenterkini.com (Paket APK Custom)+www.wadimubarak.com (Paket G)+www.pakmkusu.org (Paket G)+www.pastoralkonselinggki.com (Paket G)+www.gsjakads.com (Paket G)+www.hajiplusumrohsunnah.com (Paket F)+www.galeri-haji.com (Paket G)+www.bintangaqiqah.com (Paket G)+www.gtq-albukhari.com (Paket F)+www.arofahmina.co.id+www.webkita.net (Paket F)+www.kajianahadpagipdmpati.com (Paket F)';
+$array = 'www.sampitnetradio.id (Paket G)+radiosanggamfm.com (Paket G)+www.rcct.tl (Paket Radio Streaming Custom)+www.vestgreenradio99-6fm.com (Paket Radio Streaming Custom)';
 
 $array = explode("+",$array);
 
@@ -22,6 +22,8 @@ $array = explode("+",$array);
 // print_r($array);
 // echo '</pre>';
 
+$nn = 1;
+$nm = 1;
 foreach ($array as $key => $value) {
     $text = $value;
     preg_match('#\((.*?)\)#', $text, $match);
@@ -34,18 +36,24 @@ foreach ($array as $key => $value) {
 
     echo '<table class="wp-list-table widefat fixed striped tags">';
     echo '<tr>';
+        echo '<td>'.$nm.'</td>';
         echo '<td>'.$web.'</td>';
         echo '<td>'.$paket.'</td>';
         echo '<td>'.$paketkode.'</td>';
     echo '</tr>';
     echo '</table>';
     
-    // $getweb = $VDklienklien->get("WHERE nama = '$web' ");
+    $cat = 66;
+    // $getweb = $VDklienklien->get("WHERE nama = '$web' and kategori = $cat ");
     // if(!$getweb) {
-    //     $VDklienklien->add($web,37,$paketkode);
+    //     $VDklienklien->add($web,$cat,$paketkode);
     //     echo 'berhasil = '.$web.'<br><br>';
+    //     $nn++;
     // }
+    $nm++;
 }
+
+echo '<strong>'.$nn.'</strong>';
 
 ?>
 
