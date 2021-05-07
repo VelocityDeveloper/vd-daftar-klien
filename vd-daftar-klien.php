@@ -25,6 +25,7 @@ define( 'VD_DAFTAR_KLIEN_VERSION', '1.0.0' );
 require plugin_dir_path( __FILE__ ) . 'inc/VDklienkategori.php';
 require plugin_dir_path( __FILE__ ) . 'inc/VDklienklien.php';
 require plugin_dir_path( __FILE__ ) . 'inc/ajax.php';
+require plugin_dir_path( __FILE__ ) . 'public/init.php';
 require plugin_dir_path( __FILE__ ) . 'public/shortcode.php';
 
 /**
