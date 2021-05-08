@@ -1,0 +1,23 @@
+.vd-style-number .daftarklien-item-kategori {
+    font-weight: bold;
+}
+.vd-style-number .daftarklien-list-klien {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+.vd-style-number .daftarklien-item-klien {
+    list-style: decimal;
+    display: list-item;
+}
+.vd-style-number .badge-paket:before {
+    content:'(';
+    position: relative;
+}
+.vd-style-number .badge-paket:after {
+    content:')';
+    position: relative;
+}

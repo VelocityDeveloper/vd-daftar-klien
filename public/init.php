@@ -35,38 +35,40 @@ function show_dataklien($args=null){
 
     ?>
 
-    <div class="vd-daftar-klien show-vddaftar-klien style-vddaftar-klien-<?php echo $atstyle; ?>">
-        <div class="caption-vddaftar-klien">
-            <span><strong>Total : <?php echo $countklien; ?> Klien</strong></span>
-        </div>
-        <div class="show-vddaftar-klien">
-            <?php foreach ($arekategori as $key => $value): ?>
-                <div class="daftarklien-item" data-kategori="<?php echo $key; ?>">
-                    <div class="daftarklien-item-kategori"><strong><?php echo $value; ?></strong></div>
+    <div class="vd-daftar-klien show-vddaftar-klien">
+        <div class="vd-style-<?php echo $atstyle; ?>">
+            <div class="caption-vddaftar-klien">
+                <span><strong>Total : <?php echo $countklien; ?> Klien</strong></span>
+            </div>
+            <div class="show-vddaftar-klien">
+                <?php foreach ($arekategori as $key => $value): ?>
+                    <div class="daftarklien-item" data-kategori="<?php echo $key; ?>">
+                        <div class="daftarklien-item-kategori"><?php echo $value; ?></div>
 
-                    <?php                     
-                    $filter         = [];
-                    $filter[]       = "kategori = $key";
-                    if($atpaket&&$filpaket) {
-                        $idpaket    = $filpaket[0]['id'];
-                        $filter[]   = "paket = $idpaket";
-                    }
-                    $filter         = $filter?'WHERE '.implode(" and ",$filter):'';
-                    $getdataklien   = $VDklienklien->get("$filter ORDER BY nama ASC");
-                    // print_r($filter);
-                    if($getdataklien): ?>
-                        <ol class="daftarklien-datas">
-                        <?php foreach ($getdataklien as $data): ?>
-                            <li>
-                                <?php echo $data['nama']; ?>
-                                <?php echo isset($arepaket[$data['paket']])?'('.$arepaket[$data['paket']].')':''; ?>
-                            </li>
-                        <?php endforeach; ?>
-                        </ol> 
-                    <?php endif; ?>
+                        <?php         
+                        $filter         = [];
+                        $filter[]       = "kategori = $key";
+                        if($atpaket&&$filpaket) {
+                            $idpaket    = $filpaket[0]['id'];
+                            $filter[]   = "paket = $idpaket";
+                        }
+                        $filter         = $filter?'WHERE '.implode(" and ",$filter):'';
+                        $getdataklien   = $VDklienklien->get("$filter ORDER BY nama ASC");
+                        // print_r($filter);
+                        if($getdataklien): ?>
+                            <div class="daftarklien-list-klien">
+                            <?php foreach ($getdataklien as $data): ?>
+                                <div class="daftarklien-item-klien">
+                                    <?php echo $data['nama']; ?>
+                                    <?php echo isset($arepaket[$data['paket']])?'<span class="badge-paket">'.$arepaket[$data['paket']].'</span>':''; ?>
+                                </div>
+                            <?php endforeach; ?>
+                            </div> 
+                        <?php endif; ?>
 
-                </div>
-            <?php endforeach; ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
 
