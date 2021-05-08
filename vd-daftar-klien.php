@@ -63,6 +63,7 @@ if ( ! function_exists( 'vdklien_daftarklien_scripts_enqueue' ) ) {
 	 */
 	function vdklien_daftarklien_scripts_enqueue() {
 		wp_enqueue_style( 'vddaftarklien-styles', plugin_dir_url(__FILE__) . 'public/css/style.css', array(), VD_DAFTAR_KLIEN_VERSION, false );
+        wp_enqueue_script( 'vddaftarklien-script', plugin_dir_url(__FILE__) . 'public/js/script.js', array(), VD_DAFTAR_KLIEN_VERSION, true );
 	}
 } // endif function_exists( 'vdklien_daftarklien_scripts_enqueue' ).
 add_action( 'wp_enqueue_scripts', 'vdklien_daftarklien_scripts_enqueue' );

@@ -1,7 +1,11 @@
-.vd-style-number .daftarklien-item-kategori {
+.vd-daftar-klien .count-vddaftar-klien {
+    margin-bottom: 1rem;
+}
+
+.vd-daftar-klien .daftarklien-item-kategori {
     font-weight: bold;
 }
-.vd-style-number .daftarklien-list-klien {
+.vd-daftar-klien .daftarklien-list-klien {
     display: block;
     margin-block-start: 1em;
     margin-block-end: 1em;
@@ -9,15 +13,55 @@
     margin-inline-end: 0px;
     padding-inline-start: 40px;
 }
-.vd-style-number .daftarklien-item-klien {
+.vd-daftar-klien .daftarklien-item-klien {
     list-style: decimal;
     display: list-item;
 }
-.vd-style-number .badge-paket:before {
+.vd-daftar-klien .badge-paket {
+    text-transform: uppercase;
+    margin-left: .5rem;
+}
+.vd-daftar-klien .badge-paket:before {
     content:'(';
     position: relative;
 }
-.vd-style-number .badge-paket:after {
+.vd-daftar-klien .badge-paket:after {
     content:')';
     position: relative;
+}
+
+.vd-style-accordion .show-vddaftar-klien .daftarklien-item:not(:last-child) {
+    padding-bottom: .07rem;
+}
+.vd-style-accordion .daftarklien-item-kategori {
+    background-color: #eeeeee;
+    color: #333333;
+    cursor: pointer;
+    padding: .5rem 1rem;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+    font-weight: bold;
+}
+.vd-style-accordion .daftarklien-item-kategori.active,
+.vd-style-accordion .daftarklien-item-kategori:hover {
+    background-color: #cccccc;
+}
+.vd-style-accordion .daftarklien-item-kategori:after {
+    content: '+';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+.vd-style-accordion .daftarklien-item-kategori.active:after {
+    content: "-";
+}
+.vd-style-accordion .daftarklien-list {
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
 }

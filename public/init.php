@@ -36,8 +36,8 @@ function show_dataklien($args=null){
     ?>
 
     <div class="vd-daftar-klien show-vddaftar-klien">
-        <div class="vd-style-<?php echo $atstyle; ?>">
-            <div class="caption-vddaftar-klien">
+        <div id="vdkstyle-<?php echo $atstyle; ?>" class="vd-style-<?php echo $atstyle; ?>">
+            <div class="count-vddaftar-klien">
                 <span><strong>Total : <?php echo $countklien; ?> Klien</strong></span>
             </div>
             <div class="show-vddaftar-klien">
@@ -56,14 +56,16 @@ function show_dataklien($args=null){
                         $getdataklien   = $VDklienklien->get("$filter ORDER BY nama ASC");
                         // print_r($filter);
                         if($getdataklien): ?>
-                            <div class="daftarklien-list-klien">
-                            <?php foreach ($getdataklien as $data): ?>
-                                <div class="daftarklien-item-klien">
-                                    <?php echo $data['nama']; ?>
-                                    <?php echo isset($arepaket[$data['paket']])?'<span class="badge-paket">'.$arepaket[$data['paket']].'</span>':''; ?>
-                                </div>
-                            <?php endforeach; ?>
-                            </div> 
+                            <div class="daftarklien-list">
+                                <div class="daftarklien-list-klien">
+                                <?php foreach ($getdataklien as $data): ?>
+                                    <div class="daftarklien-item-klien">
+                                        <?php echo $data['nama']; ?>
+                                        <?php echo isset($arepaket[$data['paket']])?'<span class="badge-paket">'.$arepaket[$data['paket']].'</span>':''; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                                </div> 
+                            </div>
                         <?php endif; ?>
 
                     </div>
