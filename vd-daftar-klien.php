@@ -46,7 +46,7 @@ function vdklien_daftarklien_callback() {
     require plugin_dir_path( __FILE__ ) . 'admin/daftarklien.php';
 }
 
-//register script
+//register admin script
 function vdklien_daftarklien_enqueue_admin_script( $hook ) {
     if ( 'settings_page_vdklien-daftarklien-option' != $hook ) {
         return;
@@ -56,3 +56,13 @@ function vdklien_daftarklien_enqueue_admin_script( $hook ) {
     wp_enqueue_script( 'daftarklien_admin_script', plugin_dir_url( __FILE__ ) . 'admin/js/script.js', array(), VD_DAFTAR_KLIEN_VERSION );
 }
 add_action( 'admin_enqueue_scripts', 'vdklien_daftarklien_enqueue_admin_script' );
+
+if ( ! function_exists( 'vdklien_daftarklien_scripts_enqueue' ) ) {
+	/**
+	 * Load plugin sources.
+	 */
+	function vdklien_daftarklien_scripts_enqueue() {
+		wp_enqueue_style( 'vddaftarklien-styles', plugin_dir_url(__FILE__) . 'public/css/style.css', array(), VD_DAFTAR_KLIEN_VERSION, false );
+	}
+} // endif function_exists( 'vdklien_daftarklien_scripts_enqueue' ).
+add_action( 'wp_enqueue_scripts', 'vdklien_daftarklien_scripts_enqueue' );
