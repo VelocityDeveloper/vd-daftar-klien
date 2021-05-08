@@ -76,8 +76,8 @@ $dataklien      = $VDklienklien->get("$filter ORDER BY id DESC LIMIT $post_per_p
 $countklien     = $VDklienklien->count($filter);
 $max_num_pages  = ceil($countklien/ $post_per_page);
 
-$Navlinknext    = ($max_num_pages > $paged)?$linkdaftar.'&paged='.$paged+1:$linkdaftar;
-$Navlinkprev    = (1 > $paged)?$linkdaftar.'&paged='.$paged+1:$linkdaftar;
+$Navlinknext    = ($max_num_pages > $paged)?$linkdaftar.'&paged='.($paged+1):$linkdaftar;
+$Navlinkprev    = (1 < $paged)?$linkdaftar.'&paged='.($paged-1):$linkdaftar;
 ?>
 
 <div class="keloladaftar-klien">
