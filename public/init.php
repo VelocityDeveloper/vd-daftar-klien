@@ -42,20 +42,23 @@ function show_dataklien($args=null){
             </div>
             <div class="show-vddaftar-klien">
                 <?php foreach ($arekategori as $key => $value): ?>
-                    <div class="daftarklien-item" data-kategori="<?php echo $key; ?>">
-                        <div class="daftarklien-item-kategori"><?php echo $value; ?></div>
-
-                        <?php         
-                        $filter         = [];
-                        $filter[]       = "kategori = $key";
-                        if($atpaket&&$filpaket) {
-                            $idpaket    = $filpaket[0]['id'];
-                            $filter[]   = "paket = $idpaket";
-                        }
-                        $filter         = $filter?'WHERE '.implode(" and ",$filter):'';
-                        $getdataklien   = $VDklienklien->get("$filter ORDER BY nama ASC");
-                        // print_r($filter);
-                        if($getdataklien): ?>
+                    <?php         
+                    $filter         = [];
+                    $filter[]       = "kategori = $key";
+                    if($atpaket&&$filpaket) {
+                        $idpaket    = $filpaket[0]['id'];
+                        $filter[]   = "paket = $idpaket";
+                    }
+                    $filter         = $filter?'WHERE '.implode(" and ",$filter):'';
+                    $getdataklien   = $VDklienklien->get("$filter ORDER BY nama ASC");
+                    $countsubklien  = $VDklienklien->count("$filter");
+                    // print_r($filter);
+                    if($getdataklien): ?>
+                        <div class="daftarklien-item" data-kategori="<?php echo $key; ?>">
+                            <div class="daftarklien-item-kategori">
+                                <span class="name-cat"><?php echo $value; ?></span>
+                                <span class="count-cat">(<?php echo $countsubklien; ?>)</span>
+                            </div>
                             <div class="daftarklien-list">
                                 <div class="daftarklien-list-klien">
                                 <?php foreach ($getdataklien as $data): ?>
@@ -66,9 +69,8 @@ function show_dataklien($args=null){
                                 <?php endforeach; ?>
                                 </div> 
                             </div>
-                        <?php endif; ?>
-
-                    </div>
+                        </div>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </div>
         </div>

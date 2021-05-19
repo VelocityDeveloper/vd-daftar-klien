@@ -1,9 +1,12 @@
 .vd-daftar-klien .count-vddaftar-klien {
     margin-bottom: 1rem;
 }
-
-.vd-daftar-klien .daftarklien-item-kategori {
+.vd-daftar-klien .daftarklien-item-kategori .name-cat {
     font-weight: bold;
+}
+.vd-daftar-klien .daftarklien-item-kategori .count-cat {
+    font-size: 80%;
+    margin-left: .2rem;
 }
 .vd-daftar-klien .daftarklien-list-klien {
     display: block;
@@ -43,7 +46,6 @@
     text-align: left;
     outline: none;
     transition: 0.4s;
-    font-weight: bold;
 }
 .vd-style-accordion .daftarklien-item-kategori.active,
 .vd-style-accordion .daftarklien-item-kategori:hover {
